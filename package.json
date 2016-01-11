@@ -4,7 +4,8 @@
   "description": "Create list of customers within 100km from given text file",
   "main": "inviteGenerator.js",
   "scripts": {
-    "test": "mocha"
+    "test": "mocha",
+    "generate": "node index.js"
   },
   "author": "Andrew Bethel",
   "license": "MIT",
