@@ -1,0 +1,17 @@
+{
+  "name": "customer-mailer",
+  "version": "0.0.1",
+  "description": "Create list of customers within 100km from given text file",
+  "main": "inviteGenerator.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "author": "Andrew Bethel",
+  "license": "MIT",
+  "dependencies": {
+    "chai": "^3.4.1",
+    "lodash": "^3.10.1",
+    "mocha": "^2.3.4",
+    "request": "^2.67.0"
+  }
+}
