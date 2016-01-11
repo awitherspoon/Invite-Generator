@@ -1,24 +1,27 @@
-var inviteGenerator = require('../inviteGenerator.js')
+var getCustomers = require('../modules/getCustomers.js')
+var getInvitedCustomers = require('../modules/getInvitedCustomers.js')
+var assignDistance = require('../modules/assignDistance.js')
+var toRad = require('../modules/toRad.js')
 var expect = require('chai').expect
 
-describe('Invite Generator', function () {
+describe('Invite Generator methods', function () {
   describe('toRad', function () {
     it('should return valid radian when number is passed', function () {
       var expectedResult = -0.08726646259971647
-      var radiansTest = inviteGenerator.toRad(-5)
+      var radiansTest = toRad(-5)
       expect(radiansTest).to.equal(expectedResult)
     })
 
     it('should return NaN when invalid parameter is passed', function () {
-      var radiansTest = inviteGenerator.toRad('hi')
+      var radiansTest = toRad('hi')
       expect(radiansTest).to.not.be.ok
     })
   })
 
   describe('getCustomers', function () {
     it('should return list of customers', function (done) {
-      var fileLoc = 'https://gist.githubusercontent.com/brianw/19896c50afa89ad4dec3/raw/6c11047887a03483c50017c1d451667fd62a53ca/gistfile1.txt';
-      inviteGenerator.getCustomers(fileLoc, cb)
+      var fileLoc = 'https://gist.githubusercontent.com/brianw/19896c50afa89ad4dec3/raw/6c11047887a03483c50017c1d451667fd62a53ca/gistfile1.txt'
+      getCustomers(fileLoc, cb)
       function cb (customerList) {
         expect(customerList.length).to.equal(32)
         done()
@@ -28,10 +31,10 @@ describe('Invite Generator', function () {
 
   describe('getInvitedCustomers', function () {
     it('should return customers with distance <= 100', function (done) {
-      var fileLoc = 'https://gist.githubusercontent.com/brianw/19896c50afa89ad4dec3/raw/6c11047887a03483c50017c1d451667fd62a53ca/gistfile1.txt';
-      inviteGenerator.getCustomers(fileLoc, cb)
+      var fileLoc = 'https://gist.githubusercontent.com/brianw/19896c50afa89ad4dec3/raw/6c11047887a03483c50017c1d451667fd62a53ca/gistfile1.txt'
+      getCustomers(fileLoc, cb)
       function cb (customerList) {
-        var invitedCustomers = inviteGenerator.getInvitedCustomers(customerList, cb2)
+        var invitedCustomers = getInvitedCustomers(customerList, cb2)
       }
       function cb2 (invitedCustomers) {
         var failCount = 0
@@ -52,8 +55,8 @@ describe('Invite Generator', function () {
         latitude: '51.4540',
         longitude: '-0.0879'
       }
-      var expectedResult = 468.00757944747585;
-      var testResult = inviteGenerator.assignDistance(customer);
+      var expectedResult = 468.00757944747585
+      var testResult = assignDistance(customer)
       expect(testResult).to.equal(expectedResult)
     })
 
@@ -62,7 +65,7 @@ describe('Invite Generator', function () {
         latitude: 'hi',
         longitude: 'bye'
       }
-      var distanceTest = inviteGenerator.assignDistance(customer)
+      var distanceTest = assignDistance(customer)
       expect(distanceTest).to.not.be.ok
     })
   })
