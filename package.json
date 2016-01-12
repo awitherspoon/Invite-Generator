@@ -2,7 +2,7 @@
   "name": "invite-generator",
   "version": "0.0.2",
   "description": "Create list of customers within 100km from given text file",
-  "main": "inviteGenerator.js",
+  "main": "index.js",
   "scripts": {
     "test": "mocha",
     "generate": "node index.js"
