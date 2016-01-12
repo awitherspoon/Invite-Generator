@@ -1,7 +1,7 @@
 var getCustomers = require('./modules/getCustomers.js')
 var getInvitedCustomers = require('./modules/getInvitedCustomers.js')
 
-var FILE_LOCATION = process.argv[2] ? process.argv[2] : null
+var FILE_LOCATION = process.argv[2]
 
 if (FILE_LOCATION) {
   getCustomers(FILE_LOCATION, getInvitedCustomers)
